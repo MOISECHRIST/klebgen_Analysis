@@ -539,6 +539,14 @@ pheatmap::pheatmap(
 )
 
 merged_kpsc_data %>%
+  select(resistance_score, virulence_score) %>%
+  group_by(resistance_score, virulence_score) %>%
+  summarise(total=n()) %>%
+  ggplot(aes(x=resistance_score, y=virulence_score, size=total)) +
+  geom_point()+
+  labs(x="Resistance score", y="Virulence score", size="Number of samples")
+
+merged_kpsc_data %>%
   select(strain, year, month, day, site, st, region, k_type, o_type) %>% 
   mutate(Country = "Cameroon") %>%
   rename(id=strain, Year=year, Month=month, Day=day, Site=site, ST=st, Region= region, O_type=o_type, K_type=k_type) %>%
