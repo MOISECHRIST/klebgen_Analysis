@@ -255,6 +255,12 @@ nb_kleb <- theiaprok_results %>%
                 microbiology_results == "Klebsiella Pneumoniae")%>%
   count()
 
+theiaprok_results %>% 
+  select(microbiology_results, gambit_results) %>%
+  dplyr::filter(gambit_results %in% c("Klebsiella quasipneumoniae", "Klebsiella pneumoniae",
+                                      "Klebsiella", "Klebsiella variicola"))%>%
+  count()
+
 nb_ecoli <- theiaprok_results %>% 
   select(microbiology_results, gambit_results) %>%
   dplyr::filter(gambit_results %in% c("Escherichia coli/Shigella", "Escherichia coli",
@@ -262,10 +268,21 @@ nb_ecoli <- theiaprok_results %>%
                   microbiology_results=="Escherichia coli")%>%
   count()
 
+theiaprok_results %>% 
+  select(microbiology_results, gambit_results) %>%
+  dplyr::filter(gambit_results %in% c("Escherichia coli/Shigella", "Escherichia coli",
+                                      "Shigella sonnei", "Shigella flexneri", "Shigella boydii"))%>%
+  count()
+
 nb_aerogenes <- theiaprok_results %>% 
   select(microbiology_results, gambit_results) %>%
   dplyr::filter(gambit_results == "Klebsiella aerogenes" &
                   microbiology_results=="K.aerogenes")%>%
+  count()
+
+theiaprok_results %>% 
+  select(microbiology_results, gambit_results) %>%
+  dplyr::filter(gambit_results == "Klebsiella aerogenes")%>%
   count()
 
 #Percentage of match results
